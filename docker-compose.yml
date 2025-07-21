@@ -24,7 +24,7 @@ services:
         depends_on:
             - postgres
             - memcached
-        command: sh -c "php artisan key:generate & php artisan config:cache & npm run dev & php-fpm"
+        command: sh -c "php artisan config:cache & npm run dev & php-fpm"
 
     postgres:
         build:
