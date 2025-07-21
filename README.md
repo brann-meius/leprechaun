@@ -1,16 +1,21 @@
 # Leprechaun Project
 
-## Quick Start
-
 ### Requirements
 
 - Docker
 - Docker Compose
 
-### Run
+## Quick Start
 
-In the project root, run:
-
-```bash
-make init
-```
+1. Clone the project:
+    ```bash
+    git clone git@github.com:brann-meius/leprechaun.git leprechaun
+    ```
+2. Run:
+    ```bash
+    make init
+    ```
+3. Welcome to:
+    ```http
+    http://localhost
+    ```
