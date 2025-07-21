@@ -1,0 +1,56 @@
+services:
+    nginx:
+        build:
+            context: ./docker/nginx
+        ports:
+            - "80:80"
+        depends_on:
+            - app
+        volumes:
+            - .:/var/www/html:ro
+        networks:
+            - backend
+
+    app:
+        build:
+            context: ./
+        ports:
+            - '5173:5173'
+        env_file: .env
+        volumes:
+            - .env:/var/www/html/.env
+        networks:
+            - backend
+        depends_on:
+            - postgres
+            - memcached
+        command: sh -c "php artisan key:generate & php artisan config:cache & npm run dev & php-fpm"
+
+    postgres:
+        build:
+            context: ./docker/postgres
+        ports:
+            - '${DB_PORT:-5432}:5432'
+        environment:
+            PGPASSWORD: '${DB_PASSWORD:-secret}'
+            POSTGRES_DB: '${DB_DATABASE}'
+            POSTGRES_USER: '${DB_USERNAME}'
+            POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+        networks:
+            - backend
+
+    memcached:
+        build:
+            context: ./docker/memcached
+        env_file: .env
+        networks:
+            - backend
+
+networks:
+    backend:
+        driver: bridge
+
+volumes:
+    postgres-data:
