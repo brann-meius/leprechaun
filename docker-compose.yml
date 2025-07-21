@@ -7,7 +7,7 @@ services:
         depends_on:
             - app
         volumes:
-            - .:/var/www/html:ro
+            - .:/var/www/html
         networks:
             - backend
 
@@ -16,15 +16,12 @@ services:
             context: ./
         ports:
             - '5173:5173'
-        env_file: .env
-        volumes:
-            - .env:/var/www/html/.env
         networks:
             - backend
         depends_on:
             - postgres
             - memcached
-        command: sh -c "php artisan config:cache & npm run dev & php-fpm"
+        command: sh -c "npm run dev & php-fpm"
 
     postgres:
         build:

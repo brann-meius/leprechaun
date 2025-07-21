@@ -25,13 +25,11 @@ RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
 COPY composer.json composer.lock artisan bootstrap/ package.json package-lock.json vite.config.ts ./
 
 RUN composer install --no-dev --no-autoloader
-
 RUN npm ci
 
 COPY . .
 
 RUN composer dump-autoload --optimize
-RUN php artisan package:discover --ansi
 
 RUN chown -R www-data:www-data storage bootstrap/cache
 

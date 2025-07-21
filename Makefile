@@ -1,5 +1,5 @@
 DOCKER=docker-compose
-PHP=$(DOCKER) exec app php
+PHP=docker-compose exec app php
 
 init:
 	@if [ ! -f .env ]; then cp .env.example .env; fi
