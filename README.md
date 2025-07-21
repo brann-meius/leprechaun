@@ -13,9 +13,13 @@
     ```
 2. Run:
     ```bash
+    cd leprechaun
+    ```
+3. Run:
+    ```bash
     make init
     ```
-3. Welcome to:
+4. Welcome to:
     ```http
     http://localhost
     ```
