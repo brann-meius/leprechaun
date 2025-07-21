@@ -40,4 +40,11 @@ class Token extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected function casts(): array
+    {
+        return [
+            'expired_at' => 'datetime',
+        ];
+    }
 }

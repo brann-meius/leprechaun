@@ -22,9 +22,17 @@ class RegisterRequest extends FormRequest
             'phone' => [
                 'required',
                 'unique:users',
+                'regex:/^\+\d+$/',
                 'string',
                 'phone'
             ],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'phone.phone' => 'The :attribute number isn\'t valid.',
         ];
     }
 }

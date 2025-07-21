@@ -19,9 +19,9 @@ class OutcomeResource extends JsonResource
             'id' => $this->resource->id,
             'number' => $this->resource->number,
             'amount' => $this->resource->amount,
-            'result' => $this->resource->number % 2 !== 0
-                ? 'Win'
-                : 'Lose',
+            'result' => $this->resource->amount === 0.0
+                ? 'Lose'
+                : 'Win',
         ];
     }
 }
