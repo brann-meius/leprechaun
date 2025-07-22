@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Events\Token\TokenCreated;
-use App\Traits\Models\SoftDeletes;
+use App\Traits\Models\FutureSoftDeletes;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Token extends Model
 {
-    use SoftDeletes;
+    use FutureSoftDeletes;
     use HasUuids;
 
     public const int DURATION_DAYS = 7;

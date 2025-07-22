@@ -18,11 +18,9 @@ Route::as('register.')
 
 Route::prefix('{user}')
     ->group(function (): void {
-        Route::get('/', function (User $user): Response {
-            return Inertia::render('Luck', [
-                'user' => $user->token,
-            ]);
-        })->name('home');
+        Route::get('/', fn(User $user): Response => Inertia::render('Luck', [
+            'user' => $user->token,
+        ]))->name('home');
 
         Route::as('tokens.')
             ->prefix('tokens')
